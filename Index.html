@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>RENEWX — Circular Tech-as-a-Service</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6fbfb;
+      --card:#ffffff;
+      --accent:#2b8a84; /* teal */
+      --accent-2:#1f6f8b; /* deep teal */
+      --muted:#6b7280;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 8px 30px rgba(22,38,51,0.06);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: light;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#eef7f7);-webkit-font-smoothing:antialiased}
+
+    .container{max-width:1100px;padding:28px;margin:0 auto}
+
+    header{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:52px;height:52px;background:linear-gradient(135deg,var(--accent),var(--accent-2));border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;box-shadow:var(--shadow)}
+    nav a{margin-left:18px;color:var(--muted);text-decoration:none;font-weight:600}
+    nav a.cta{background:var(--accent);color:white;padding:10px 14px;border-radius:10px}
+
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:28px 0}
+    .hero-card{background:var(--card);border-radius:14px;padding:28px;box-shadow:var(--shadow)}
+    h1{margin:0;font-size:30px;color:#072a2a}
+    p.lead{color:var(--muted);margin-top:10px}
+
+    .metrics{display:flex;gap:12px;margin-top:18px}
+    .metric{background:linear-gradient(180deg,rgba(43,138,132,0.06),rgba(31,111,139,0.03));padding:12px;border-radius:10px;flex:1}
+    .metric h3{margin:0;font-size:18px;color:var(--accent-2)}
+    .metric p{margin:6px 0 0;color:var(--muted)}
+
+    .card-cta{display:flex;gap:12px;margin-top:18px}
+    .btn{background:var(--accent);color:white;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .btn.ghost{background:transparent;border:2px solid rgba(15,76,72,0.08);color:var(--accent-2)}
+
+    /* Sections */
+    section{margin-top:28px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .panel{background:var(--card);padding:20px;border-radius:12px;box-shadow:var(--shadow)}
+
+    /* fun interactive timeline */
+    .timeline{display:flex;flex-direction:column;gap:10px}
+    .step{display:flex;gap:12px;align-items:flex-start}
+    .dot{width:40px;height:40px;background:var(--accent);color:white;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700}
+    .step h4{margin:0}
+    .muted{color:var(--muted)}
+
+    /* Pricing */
+    .pricing{display:flex;gap:18px;align-items:stretch}
+    .price-card{flex:1;padding:18px;border-radius:12px;background:linear-gradient(180deg,#ffffff, #f8ffff);border:1px solid rgba(15,76,72,0.03)}
+    .price{font-size:28px;font-weight:800;color:var(--accent-2)}
+
+    footer{margin-top:36px;padding:18px 0;color:var(--muted)}
+
+    /* small screens */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .grid-2{grid-template-columns:1fr}
+      .pricing{flex-direction:column}
+      nav a{display:none}
+    }
+
+    /* playful microbounce */
+    .bouncy{display:inline-block;transform-origin:center;transition:transform .18s ease}
+    .bouncy:hover{transform:translateY(-6px) scale(1.02)}
+
+    /* animated counters */
+    .bignum{font-size:32px;font-weight:800;color:var(--accent-2)}
+
+    /* small CTA ribbon */
+    .ribbon{position:fixed;right:18px;bottom:18px;background:var(--accent);color:white;padding:12px 14px;border-radius:999px;box-shadow:var(--shadow);cursor:pointer}
+  </style>
+</head>
+<body>
+  <header class="container">
+    <div class="brand">
+      <div class="logo">RX</div>
+      <div>
+        <div style="font-weight:700">RENEWX</div>
+        <div style="font-size:12px;color:var(--muted)">Circular Tech-as-a-Service</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#problem">Problem</a>
+      <a href="#solution">Solution</a>
+      <a href="#financials">Financials</a>
+      <a class="cta" href="#contact">Get Demo</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <h1>RENEWX — Tech that’s affordable, reliable & circular</h1>
+            <p class="lead">Convert CapEx into predictable OpEx. Premium renewed laptops, instant support, and a 4‑hour fix promise — all for ₹1,500/month per unit.</p>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:12px;color:var(--muted)">Est. monthly saving</div>
+            <div class="bignum" id="savings">₹0</div>
+          </div>
+        </div>
+
+        <div class="metrics">
+          <div class="metric bouncy">
+            <h3 id="counter-laptops">50</h3>
+            <p>Demo scale (units)</p>
+          </div>
+          <div class="metric bouncy">
+            <h3 id="counter-tco">20%</h3>
+            <p>Typical TCO reduction</p>
+          </div>
+          <div class="metric bouncy">
+            <h3 id="counter-waste">4 kg</h3>
+            <p>E‑waste saved per laptop/year</p>
+          </div>
+        </div>
+
+        <div class="card-cta">
+          <button class="btn" onclick="scrollToSection('solution')">See the Plan</button>
+          <button class="btn ghost" onclick="openDemoModal()">Request Demo</button>
+        </div>
+      </div>
+
+      <div class="panel" style="border-radius:14px;display:flex;flex-direction:column;gap:14px;align-items:stretch">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;color:var(--muted)">SLA</div>
+            <div style="font-weight:800;color:var(--accent-2)">4‑Hour Quick Fix (NCR)</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:12px;color:var(--muted)">Price</div>
+            <div style="font-weight:800;color:var(--accent)">₹1,500 / month</div>
+          </div>
+        </div>
+        <div style="background:linear-gradient(90deg,rgba(47,127,117,0.06),transparent);padding:12px;border-radius:10px">
+          <strong>Why this works:</strong> Convert upfront CapEx into smooth OpEx, keep productivity high, and cut e‑waste.
+        </div>
+
+        <div style="display:flex;gap:10px;justify-content:space-between">
+          <small class="muted">Perfect for MSMEs in Delhi‑NCR</small>
+          <small class="muted">GST‑claimable expense</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem -->
+    <section id="problem" class="grid-2">
+      <div class="panel">
+        <h3>The Triple‑Threat Crisis</h3>
+        <p class="muted">Good afternoon, judges. MSMEs are the backbone of Delhi‑NCR — but today, they’re struggling.</p>
+        <div class="timeline" style="margin-top:12px">
+          <div class="step"><div class="dot">1</div><div><h4>CapEx shock</h4><p class="muted">The moment they need 50 laptops, they get hit with a huge upfront cost.</p></div></div>
+          <div class="step"><div class="dot">2</div><div><h4>Productivity risk</h4><p class="muted">Cheap devices break, productivity drops, cash flow collapses.</p></div></div>
+          <div class="step"><div class="dot">3</div><div><h4>E‑waste burden</h4><p class="muted">India is drowning in e‑waste because we keep buying and throwing devices.</p></div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Quick snapshot</h3>
+        <p class="muted">This is a moment to choose a different path: preserve cash, guarantee uptime, and reduce environmental harm.</p>
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+          <div style="padding:10px;background:var(--glass);border-radius:10px">Affordable</div>
+          <div style="padding:10px;background:var(--glass);border-radius:10px">Reliable</div>
+          <div style="padding:10px;background:var(--glass);border-radius:10px">Eco‑friendly</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution -->
+    <section id="solution">
+      <div class="panel">
+        <h3>The Solution: Circular Tech‑as‑a‑Service</h3>
+        <p class="muted">Our solution is simple and powerful: Circular Tech‑as‑a‑Service. We don’t sell laptops — we guarantee uptime.</p>
+
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+          <div style="flex:1;min-width:200px" class="panel">
+            <strong>What customers get</strong>
+            <ul class="muted">
+              <li>Premium renewed laptops</li>
+              <li>Full support & maintenance</li>
+              <li>4‑hour quick‑fix anywhere in NCR</li>
+            </ul>
+          </div>
+          <div style="flex:1;min-width:200px" class="panel">
+            <strong>Price</strong>
+            <div style="font-weight:800;margin-top:6px">₹1,500 / month per unit</div>
+            <div class="muted">Convert lakhs of CapEx into predictable OpEx — GST‑claimable.</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="panel">
+          <h4>Operational clarity: The Partner Guarantee</h4>
+          <p class="muted">We run an ultra‑lean, zero‑fixed‑overhead model. Certified freelance partners and ARCs handle on‑ground work. A central dispatch dashboard routes the nearest technician and pays them instantly upon ticket closure.</p>
+        </div>
+        <div class="panel">
+          <h4>How the SLA works</h4>
+          <ol class="muted">
+            <li>Customer raises ticket</li>
+            <li>Nearest ARC technician assigned via dashboard</li>
+            <li>Replacement or repair within 4 hours in NCR</li>
+            <li>Ticket closed → partner paid instantly</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Financials -->
+    <section id="financials" class="grid-2">
+      <div class="panel">
+        <h3>Financial advantage: OpEx vs. TCO</h3>
+        <p class="muted">When a company buys a refurbished laptop for ₹40,000, they inherit long-term risk. Our ₹1,500/month fee is ~20% less than typical TCO and preserves ₹20 Lakh upfront cash (for 50 units).</p>
+
+        <div style="display:flex;gap:10px;margin-top:12px;align-items:center">
+          <div style="flex:1">
+            <strong>Device sourcing</strong>
+            <p class="muted">We source and upgrade devices for ₹25,000 each.</p>
+          </div>
+          <div style="flex:1">
+            <strong>Break‑even</strong>
+            <p class="muted">At ₹1,500/month, asset pays back in 25 months.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:12px">
+          <div class="price-card price-card--mini">
+            <div style="font-size:12px;color:var(--muted)">Fixed costs</div>
+            <div style="font-weight:800">₹3,00,000 / year</div>
+            <div class="muted">Company profitable at 25 active contracts</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Financials: The 25‑Contract Break‑Even</h3>
+        <p class="muted">This is a profit engine built on minimal risk. Source for ₹25,000, charge ₹1,500/month — break-even in ~25 months. Low fixed costs = fast scalability.</p>
+
+        <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
+          <div style="flex:1;text-align:center">
+            <div style="font-size:24px;font-weight:800">25</div>
+            <small class="muted">Active contracts to break even</small>
+          </div>
+          <div style="flex:1;text-align:center">
+            <div style="font-size:24px;font-weight:800">₹25,000</div>
+            <small class="muted">Cost per device</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact -->
+    <section class="panel" style="margin-top:18px">
+      <h3>Impact & The North Star</h3>
+      <p class="muted">Every renewed laptop saves ~4 kg e‑waste and avoids ~300 kg CO₂. Scaling to 5,000 laptops saves 20 tons e‑waste and 1,500 tons CO₂ annually.</p>
+
+      <div style="display:flex;gap:12px;margin-top:12px;align-items:center">
+        <div style="flex:1">
+          <strong class="bignum" id="impact-laptops">0</strong>
+          <div class="muted">Laptops deployed</div>
+        </div>
+        <div style="flex:1">
+          <strong class="bignum" id="impact-waste">0</strong>
+          <div class="muted">Tons of e‑waste avoided</div>
+        </div>
+        <div style="flex:1">
+          <strong class="bignum" id="impact-co2">0</strong>
+          <div class="muted">Tons CO₂ saved / year</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section style="margin-top:18px">
+      <h3>Pricing</h3>
+      <div class="pricing">
+        <div class="price-card">
+          <h4>Standard</h4>
+          <div class="price">₹1,500</div>
+          <div class="muted">/ month per unit</div>
+          <ul class="muted" style="margin-top:10px">
+            <li>Premium renewed laptop</li>
+            <li>4‑hour NCR SLA</li>
+            <li>Instant partner payout</li>
+            <li>GST‑claimable OpEx</li>
+          </ul>
+          <div style="margin-top:12px"><button class="btn" onclick="openDemoModal()">Get Pilot</button></div>
+        </div>
+
+        <div class="price-card">
+          <h4>Enterprise</h4>
+          <div style="font-weight:800;margin-top:6px">Custom</div>
+          <div class="muted">Volume discounts & dedicated account manager</div>
+          <div style="margin-top:12px"><button class="btn ghost" onclick="openContact()">Talk Sales</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="panel" style="margin-top:18px">
+      <h3>Request a demo</h3>
+      <p class="muted">Leave your details and we'll get a pilot set up for your business in NCR.</p>
+      <form onsubmit="demoSubmit(event)" style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+        <input id="name" placeholder="Your name / company" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6f2f1" required>
+        <input id="phone" placeholder="Phone / WhatsApp" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6f2f1" required>
+        <input id="email" placeholder="Email (optional)" style="flex:1;padding:10px;border-radius:8px;border:1px solid #e6f2f1">
+        <button class="btn" style="min-width:180px" type="submit">Request Pilot</button>
+      </form>
+      <div id="formMsg" class="muted" style="margin-top:10px"></div>
+    </section>
+
+    <footer class="container">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <strong>RENEWX</strong> — Circular Tech‑as‑a‑Service
+        </div>
+        <div class="muted">Made for the sales pitch comp • Good luck</div>
+      </div>
+    </footer>
+
+  </main>
+
+  <div class="ribbon bouncy" role="button" onclick="openDemoModal()">Get Demo</div>
+
+  <div id="demoModal" style="display:none;position:fixed;inset:0;background:rgba(10,20,20,0.45);align-items:center;justify-content:center;padding:20px">
+    <div style="background:white;padding:20px;border-radius:12px;max-width:560px;width:100%;box-shadow:var(--shadow)">
+      <h3>Request demo</h3>
+      <p class="muted">This demo form is non‑functional in the static build. Copy the contact details into your slide, or replace the form action with your email service.</p>
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px">
+        <button class="btn ghost" onclick="closeDemoModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // small helpers
+    function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+    function openDemoModal(){document.getElementById('demoModal').style.display='flex'}
+    function closeDemoModal(){document.getElementById('demoModal').style.display='none'}
+    function openContact(){scrollToSection('contact')}
+
+    // fake form submit
+    function demoSubmit(e){e.preventDefault();document.getElementById('formMsg').textContent='Thanks! We\'ll reach out to schedule a pilot.'}
+
+    // animated counters
+    function animateNumber(el, start, end, duration){
+      let startTime=null;
+      function step(ts){
+        if(!startTime) startTime=ts;
+        const progress=Math.min((ts-startTime)/duration,1);
+        const value=Math.floor(start + (end-start)*progress);
+        el.textContent = value.toLocaleString();
+        if(progress<1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // set demo numbers based on 50 units
+    document.addEventListener('DOMContentLoaded', ()=>{
+      const units = 50;
+      document.getElementById('counter-laptops').textContent = units;
+      document.getElementById('counter-tco').textContent = '20%';
+      document.getElementById('counter-waste').textContent = '4 kg';
+
+      const savingsEl = document.getElementById('savings');
+      const savings = units * 400; // sample saving calc
+      animateNumber(savingsEl, 0, savings, 900);
+
+      // impact numbers
+      animateNumber(document.getElementById('impact-laptops'), 0, 5000, 1000);
+      animateNumber(document.getElementById('impact-waste'), 0, 20, 1000);
+      animateNumber(document.getElementById('impact-co2'), 0, 1500, 1000);
+    })
+  </script>
+</body>
+</html>
